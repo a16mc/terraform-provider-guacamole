@@ -34,6 +34,11 @@ func dataSourceUser() *schema.Resource {
 							Description: "Organizational role of user",
 							Computed:    true,
 						},
+						"organization": {
+							Type:        schema.TypeString,
+							Description: "Organization of user",
+							Computed:    true,
+						},
 						"full_name": {
 							Type:        schema.TypeString,
 							Description: "Full name of user",

@@ -11,6 +11,7 @@ type GuacUser struct {
 // GuacUserAttributes additional user attributes
 type GuacUserAttributes struct {
 	GuacOrganizationalRole string `json:"guac-organizational-role,omitempty"`
+	GuacOrganization       string `json:"guac-organization,omitempty"`
 	GuacFullName           string `json:"guac-full-name,omitempty"`
 	Email                  string `json:"guac-email-address,omitempty"`
 	Expired                string `json:"expired,omitempty"`

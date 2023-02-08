@@ -15,6 +15,7 @@ func TestAccGuacamoleUserBasic(t *testing.T) {
 		"username": "testProviderUser",
 		"attributes": map[string]interface{}{
 			"organizational_role": "testRole",
+			"organization": "testOrganization"
 			"full_name":           "Guac Provider Test",
 			"email":               "guacProvider@example.com",
 			"expired":             true,
@@ -42,6 +43,7 @@ func TestAccGuacamoleUserBasic(t *testing.T) {
 					testAccCheckGuacamoleUserExists("guacamole_user.new"),
 					resource.TestCheckResourceAttr("guacamole_user.new", "username", testProviderUser["username"].(string)),
 					resource.TestCheckResourceAttr("guacamole_user.new", "attributes.0.organizational_role", testProviderUser["attributes"].(map[string]interface{})["organizational_role"].(string)),
+					resource.TestCheckResourceAttr("guacamole_user.new", "attributes.0.organization", testProviderUser["attributes"].(map[string]interface{})["organization"].(string)),
 					resource.TestCheckResourceAttr("guacamole_user.new", "attributes.0.full_name", testProviderUser["attributes"].(map[string]interface{})["full_name"].(string)),
 					resource.TestCheckResourceAttr("guacamole_user.new", "attributes.0.email", testProviderUser["attributes"].(map[string]interface{})["email"].(string)),
 					resource.TestCheckResourceAttr("guacamole_user.new", "attributes.0.expired", boolToString(testProviderUser["attributes"].(map[string]interface{})["expired"].(bool))),

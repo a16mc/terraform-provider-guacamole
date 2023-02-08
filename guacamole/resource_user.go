@@ -51,6 +51,12 @@ func guacamoleUser() *schema.Resource {
 							Optional:    true,
 							Computed:    true,
 						},
+						"organization": {
+							Type:        schema.TypeString,
+							Description: "Organization of user",
+							Optional:    true,
+							Computed:    true,
+						},
 						"full_name": {
 							Type:        schema.TypeString,
 							Description: "Full name of user",
@@ -141,9 +147,9 @@ func guacamoleUser() *schema.Resource {
 				},
 			},
 		},
-                Importer: &schema.ResourceImporter{
-                        StateContext: schema.ImportStatePassthroughContext,
-                },
+		Importer: &schema.ResourceImporter{
+			StateContext: schema.ImportStatePassthroughContext,
+		},
 	}
 }
 
@@ -520,6 +526,7 @@ func convertResourceDataToGuacUser(d *schema.ResourceData) (types.GuacUser, erro
 		attributes := attributeList[0].(map[string]interface{})
 		user.Attributes = types.GuacUserAttributes{
 			GuacOrganizationalRole: attributes["organizational_role"].(string),
+			GuacOrganization:       attributes["organization"].(string),
 			GuacFullName:           attributes["full_name"].(string),
 			Email:                  attributes["email"].(string),
 			Expired:                boolToString(attributes["expired"].(bool)),
@@ -542,6 +549,7 @@ func convertGuacUserToResourceData(d *schema.ResourceData, user *types.GuacUser)
 
 	attributes := map[string]interface{}{
 		"organizational_role": user.Attributes.GuacOrganizationalRole,
+		"organization":        user.Attributes.GuacOrganization,
 		"full_name":           user.Attributes.GuacFullName,
 		"email":               user.Attributes.Email,
 		"expired":             stringToBool(user.Attributes.Expired),

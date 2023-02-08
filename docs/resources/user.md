@@ -46,6 +46,7 @@ resource "guacamole_user" "user" {
 ### Attributes
 
 - `organizational_role` - (string) assigned organizational role
+- `organization` - (string) assigned organization
 - `full_name` - (string) full name
 - `email` - (string) email address
 - `expired` - (bool) whether the account is expired
